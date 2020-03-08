@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh"><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" hreflang="zh" /><updated>2020-03-08T16:07:01+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Destiny Blog</title><subtitle>Enjoy Life and Be Happy
+</subtitle><author><name>Destiny</name></author><entry><title type="html">Git版本管理流程及规范</title><link href="http://localhost:4000/2020/03/03/Git%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%E6%B5%81%E7%A8%8B%E5%8F%8A%E8%A7%84%E8%8C%83.html" rel="alternate" type="text/html" title="Git版本管理流程及规范" /><published>2020-03-03T00:00:00+08:00</published><updated>2020-03-03T00:00:00+08:00</updated><id>http://localhost:4000/2020/03/03/Git%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%E6%B5%81%E7%A8%8B%E5%8F%8A%E8%A7%84%E8%8C%83</id><content type="html" xml:base="http://localhost:4000/2020/03/03/Git%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%E6%B5%81%E7%A8%8B%E5%8F%8A%E8%A7%84%E8%8C%83.html">&lt;h1 id=&quot;角色及职责&quot;&gt;角色及职责&lt;/h1&gt;
+&lt;h4 id=&quot;开发组员&quot;&gt;开发组员&lt;/h4&gt;
+&lt;ol&gt;
+  &lt;li&gt;dev、hotfix的分支开发
+    &lt;h4 id=&quot;开发组长&quot;&gt;开发组长&lt;/h4&gt;
+  &lt;/li&gt;
+  &lt;li&gt;dev、hotfix的分支开发&lt;/li&gt;
+  &lt;li&gt;从dev分支合并到release
+    &lt;h4 id=&quot;版本管理员&quot;&gt;版本管理员：&lt;/h4&gt;
+  &lt;/li&gt;
+  &lt;li&gt;从master打dev、release、hotfix分支&lt;/li&gt;
+  &lt;li&gt;从release分支合并到master&lt;/li&gt;
+  &lt;li&gt;将master合并到release分支&lt;/li&gt;
+  &lt;li&gt;删除hotfix分支&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;分支记录存放位置 - Git-&amp;gt;wikis-&amp;gt;分支记录&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h1 id=&quot;版本号规范&quot;&gt;版本号规范&lt;/h1&gt;
+&lt;h4 id=&quot;dev及release版本号命名规则---&quot;&gt;dev及release版本号命名规则 - &lt;主版本号&gt;.&lt;副版本号&gt;.&lt;发布号&gt;&lt;/发布号&gt;&lt;/副版本号&gt;&lt;/主版本号&gt;&lt;/h4&gt;
+&lt;h4 id=&quot;例子&quot;&gt;例子:&lt;/h4&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;dev1.28.0(主版本号:1, 副版本号：28, 发布号:0)
+release1.28.0(主版本号:1, 副版本号：28, 发布号:0)
+hotfix1.28.0(主版本号:1, 副版本号：28, 发布号:0) 1. 主版本号设置规则
+* 产品的主体构件进行重大修改，主版本号加1
+* 产品的主体构件之间的接口协议重大修改，主版本号加1 2. 副版本号设置规则
+* 主版本号变更时，副版本号置0
+* 数据结构变更(新增或修改注释含义的情况除外)，副版本号加1
+* 若副版本号累加至超过90时，采用主版本号进位制，主版本号加1，副版本号重新置0 3. 发布号设置规则
+* 主版本号或副版本号变更时，发布号置0
+* 若发布的版本无数据结构变更，则发布号加1
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;hotfix版本号命名规则---&quot;&gt;hotfix版本号命名规则 - &lt;主版本号&gt;.&lt;副版本号&gt;.&lt;发布号&gt;&lt;/发布号&gt;&lt;/副版本号&gt;&lt;/主版本号&gt;&lt;/h4&gt;
+&lt;p&gt;hotfix由于即修即删，因此同release版本的版本号即可&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;主版本号和副版本号的变更标志着重要的功能或结构变动。发布号的变更，用于体现小的功能变更&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h1 id=&quot;流程活动图&quot;&gt;流程活动图&lt;/h1&gt;
+&lt;h4 id=&quot;1-版本管理常规流程总图&quot;&gt;[1] 版本管理常规流程总图&lt;/h4&gt;
+
+&lt;p&gt;信息技术中心 &amp;gt; Git版本管理流程及规范 &amp;gt; 版本管理常规流程总图.png&lt;/p&gt;
+
+&lt;h6 id=&quot;版本管理常规流程详情1-开发阶段&quot;&gt;版本管理常规流程详情1-开发阶段&lt;/h6&gt;
+&lt;p&gt;信息技术中心 &amp;gt; Git版本管理流程及规范 &amp;gt; 版本管理常规流程详情1-开发阶段.png&lt;/p&gt;
+
+&lt;h6 id=&quot;版本管理常规流程详情2-发版阶段&quot;&gt;版本管理常规流程详情2-发版阶段&lt;/h6&gt;
+
+&lt;p&gt;信息技术中心 &amp;gt; Git版本管理流程及规范 &amp;gt; 版本管理常规流程详情2-发版阶段.png&lt;/p&gt;
+
+&lt;h4 id=&quot;2-版本管理紧急修复流程总图&quot;&gt;[2] 版本管理紧急修复流程总图&lt;/h4&gt;
+
+&lt;p&gt;信息技术中心 &amp;gt; Git版本管理流程及规范 &amp;gt; 版本管理紧急修复流程总图.png&lt;/p&gt;
+
+&lt;h6 id=&quot;版本管理紧急修复流程详情&quot;&gt;版本管理紧急修复流程详情&lt;/h6&gt;
+
+&lt;p&gt;信息技术中心 &amp;gt; Git版本管理流程及规范 &amp;gt; 版本管理紧急修复流程详情.png&lt;/p&gt;</content><author><name>Destiny</name></author><category term="Git" /><summary type="html">角色及职责 开发组员 dev、hotfix的分支开发 开发组长 dev、hotfix的分支开发 从dev分支合并到release 版本管理员： 从master打dev、release、hotfix分支 从release分支合并到master 将master合并到release分支 删除hotfix分支 分支记录存放位置 - Git-&amp;gt;wikis-&amp;gt;分支记录 版本号规范 dev及release版本号命名规则 - .. 例子: dev1.28.0(主版本号:1, 副版本号：28, 发布号:0) release1.28.0(主版本号:1, 副版本号：28, 发布号:0) hotfix1.28.0(主版本号:1, 副版本号：28, 发布号:0) 1. 主版本号设置规则 * 产品的主体构件进行重大修改，主版本号加1 * 产品的主体构件之间的接口协议重大修改，主版本号加1 2. 副版本号设置规则 * 主版本号变更时，副版本号置0 * 数据结构变更(新增或修改注释含义的情况除外)，副版本号加1 * 若副版本号累加至超过90时，采用主版本号进位制，主版本号加1，副版本号重新置0 3. 发布号设置规则 * 主版本号或副版本号变更时，发布号置0 * 若发布的版本无数据结构变更，则发布号加1 hotfix版本号命名规则 - .. hotfix由于即修即删，因此同release版本的版本号即可 主版本号和副版本号的变更标志着重要的功能或结构变动。发布号的变更，用于体现小的功能变更 流程活动图 [1] 版本管理常规流程总图 信息技术中心 &amp;gt; Git版本管理流程及规范 &amp;gt; 版本管理常规流程总图.png 版本管理常规流程详情1-开发阶段 信息技术中心 &amp;gt; Git版本管理流程及规范 &amp;gt; 版本管理常规流程详情1-开发阶段.png 版本管理常规流程详情2-发版阶段 信息技术中心 &amp;gt; Git版本管理流程及规范 &amp;gt; 版本管理常规流程详情2-发版阶段.png [2] 版本管理紧急修复流程总图 信息技术中心 &amp;gt; Git版本管理流程及规范 &amp;gt; 版本管理紧急修复流程总图.png 版本管理紧急修复流程详情 信息技术中心 &amp;gt; Git版本管理流程及规范 &amp;gt; 版本管理紧急修复流程详情.png</summary></entry><entry><title type="html">Markdown 基础教程</title><link href="http://localhost:4000/2019/01/01/Markdown-%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B.html" rel="alternate" type="text/html" title="Markdown 基础教程" /><published>2019-01-01T00:00:00+08:00</published><updated>2019-01-01T00:00:00+08:00</updated><id>http://localhost:4000/2019/01/01/Markdown%20%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B</id><content type="html" xml:base="http://localhost:4000/2019/01/01/Markdown-%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B.html">&lt;h1 id=&quot;一标题&quot;&gt;一、标题&lt;/h1&gt;
+&lt;p&gt;在想要设置为标题的文字前面加#来表示
+一个#是一级标题，二个#是二级标题，以此类推。支持六级标题。&lt;/p&gt;
+
+&lt;p&gt;注：标准语法一般在#后跟个空格再写文字，貌似简书不加空格也行。&lt;/p&gt;
+
+&lt;p&gt;示例：&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# 这是一级标题
+## 这是二级标题
+### 这是三级标题
+#### 这是四级标题
+##### 这是五级标题
+###### 这是六级标题
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;效果如下：&lt;/p&gt;
+&lt;h1 id=&quot;这是一级标题&quot;&gt;这是一级标题&lt;/h1&gt;
+&lt;h2 id=&quot;这是二级标题&quot;&gt;这是二级标题&lt;/h2&gt;
+&lt;h3 id=&quot;这是三级标题&quot;&gt;这是三级标题&lt;/h3&gt;
+&lt;h4 id=&quot;这是四级标题&quot;&gt;这是四级标题&lt;/h4&gt;
+&lt;h5 id=&quot;这是五级标题&quot;&gt;这是五级标题&lt;/h5&gt;
+&lt;h6 id=&quot;这是六级标题&quot;&gt;这是六级标题&lt;/h6&gt;
+
+&lt;h1 id=&quot;二字体&quot;&gt;二、字体&lt;/h1&gt;
+&lt;h4 id=&quot;加粗&quot;&gt;加粗&lt;/h4&gt;
+&lt;p&gt;要加粗的文字左右分别用两个*号包起来&lt;/p&gt;
+
+&lt;h4 id=&quot;斜体&quot;&gt;斜体&lt;/h4&gt;
+&lt;p&gt;要倾斜的文字左右分别用一个*号包起来&lt;/p&gt;
+
+&lt;h4 id=&quot;斜体加粗&quot;&gt;斜体加粗&lt;/h4&gt;
+&lt;p&gt;要倾斜和加粗的文字左右分别用三个*号包起来&lt;/p&gt;
+
+&lt;h4 id=&quot;删除线&quot;&gt;删除线&lt;/h4&gt;
+&lt;p&gt;要加删除线的文字左右分别用两个~~号包起来&lt;/p&gt;
+
+&lt;p&gt;示例：&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;**这是加粗的文字**
+*这是倾斜的文字*`
+***这是斜体加粗的文字***
+~~这是加删除线的文字~~
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;效果如下：&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;这是加粗的文字&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;这是倾斜的文字&lt;/em&gt;`&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;这是斜体加粗的文字&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;del&gt;这是加删除线的文字&lt;/del&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;三引用&quot;&gt;三、引用&lt;/h1&gt;
+&lt;p&gt;在引用的文字前加&amp;gt;即可。引用也可以嵌套，如加两个»、三个»&amp;gt;、n个…&lt;/p&gt;
+
+&lt;p&gt;示例：&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;这是引用的内容
+&amp;gt;&amp;gt;这是引用的内容
+&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;这是引用的内容
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;效果如下：&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;这是引用的内容&lt;/p&gt;
+  &lt;blockquote&gt;
+    &lt;p&gt;这是引用的内容&lt;/p&gt;
+    &lt;blockquote&gt;
+      &lt;blockquote&gt;
+        &lt;blockquote&gt;
+          &lt;blockquote&gt;
+            &lt;blockquote&gt;
+              &lt;blockquote&gt;
+                &lt;blockquote&gt;
+                  &lt;blockquote&gt;
+                    &lt;p&gt;这是引用的内容&lt;/p&gt;
+                  &lt;/blockquote&gt;
+                &lt;/blockquote&gt;
+              &lt;/blockquote&gt;
+            &lt;/blockquote&gt;
+          &lt;/blockquote&gt;
+        &lt;/blockquote&gt;
+      &lt;/blockquote&gt;
+    &lt;/blockquote&gt;
+  &lt;/blockquote&gt;
+&lt;/blockquote&gt;
+
+&lt;h1 id=&quot;四分割线&quot;&gt;四、分割线&lt;/h1&gt;
+&lt;p&gt;三个或者三个以上的 - 或者 * 都可以。&lt;/p&gt;
+
+&lt;p&gt;示例：&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;---
+&lt;/span&gt;&lt;span class=&quot;gd&quot;&gt;----
+&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;***&lt;/span&gt;
+*****
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;效果如下：(可以看到，显示效果是一样的)&lt;/p&gt;
+
+&lt;hr /&gt;
+&lt;hr /&gt;
+&lt;hr /&gt;
+&lt;hr /&gt;
+
+&lt;h1 id=&quot;五图片&quot;&gt;五、图片&lt;/h1&gt;
+&lt;p&gt;语法：&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;![图片名](图片地址 &quot;图片title&quot;)
+
+图片名是图片的命名，可加可不加。
+图片title是图片的标题，当鼠标移到图片上时显示的内容。title可加可不加
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;示例：&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;![logo_alt](https://confluence.ingbaobei.com/images/logo/default-space-logo.svg &quot;confluenceLogo&quot;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;效果如下：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://confluence.ingbaobei.com/images/logo/default-space-logo.svg&quot; alt=&quot;logo_alt&quot; title=&quot;confluenceLogo&quot; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;六超链接&quot;&gt;六、超链接&lt;/h1&gt;
+&lt;p&gt;语法：&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[超链接名](超链接地址 &quot;超链接title&quot;)
+title可加可不加
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;示例：&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[百度](http://baidu.com)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;效果如下：
+&lt;a href=&quot;http://baidu.com&quot;&gt;百度&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;七列表&quot;&gt;七、列表&lt;/h1&gt;
+&lt;h3 id=&quot;无序列表&quot;&gt;无序列表&lt;/h3&gt;
+&lt;p&gt;语法：
+无序列表用 - + * 任何一种都可以&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;- 列表内容
++ 列表内容
+* 列表内容
+
+注意：- + * 跟内容之间都要有一个空格
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;效果如下：(可以看到，显示效果是一样的)&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;列表内容&lt;/li&gt;
+  &lt;li&gt;列表内容&lt;/li&gt;
+  &lt;li&gt;列表内容&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;有序列表&quot;&gt;有序列表&lt;/h3&gt;
+&lt;p&gt;语法：数字加点&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;1. 列表内容
+2. 列表内容
+3. 列表内容
+
+注意：序号跟内容之间要有空格
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;效果如下：&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;列表内容&lt;/li&gt;
+  &lt;li&gt;列表内容&lt;/li&gt;
+  &lt;li&gt;列表内容&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;列表嵌套&quot;&gt;列表嵌套&lt;/h3&gt;
+&lt;p&gt;语法：上一级和下一级之间敲四个空格即可（一般相当于一个tab）&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;* 一级无序列表内容
+    1. 二级无序列表内容
+    2. 二级无序列表内容
+1. 一级无序列表内容
+    * 二级无序列表内容
+        * 三级无序列表内容
+2. 一级无序列表内容
+    1. 二级无序列表内容
+        1. 三级无序列表内容
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;效果如下：&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;一级无序列表内容
+    &lt;ol&gt;
+      &lt;li&gt;二级无序列表内容&lt;/li&gt;
+      &lt;li&gt;二级无序列表内容
+        &lt;ol&gt;
+          &lt;li&gt;一级无序列表内容
+       * 二级无序列表内容
+            &lt;ul&gt;
+              &lt;li&gt;三级无序列表内容&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+          &lt;li&gt;一级无序列表内容&lt;/li&gt;
+        &lt;/ol&gt;
+      &lt;/li&gt;
+      &lt;li&gt;二级无序列表内容
+        &lt;ol&gt;
+          &lt;li&gt;三级无序列表内容&lt;/li&gt;
+        &lt;/ol&gt;
+      &lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;八表格&quot;&gt;八、表格&lt;/h1&gt;
+&lt;p&gt;语法：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;表头 | 表头 | 表头 | 表头
+---- | ---- | ---- | ----
+内容 | 内容 | 内容 | 内容
+内容 | 内容 | 内容 | 内容
+
+其中，
+* 第二行分割表头和内容。&quot;-&quot;有一个就行，为了对齐，多加了几个
+* 第二行分割可更改对齐方式。文字默认居左
+    * 文字居中 -&amp;gt; &quot;-&quot;两边加&quot;:&quot;
+    * 文字居右 -&amp;gt; &quot;-&quot;右边加&quot;:&quot;
+注意：
+原生的语法两边都要用 | 包起来。此处省略
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;效果如下：&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;表头&lt;/th&gt;
+      &lt;th style=&quot;text-align: left&quot;&gt;表头&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;表头&lt;/th&gt;
+      &lt;th style=&quot;text-align: right&quot;&gt;表头&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;内容&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;内&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;内容&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;内&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;内容&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;内容&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;容&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;内容&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h1 id=&quot;九代码&quot;&gt;九、代码&lt;/h1&gt;
+&lt;h3 id=&quot;单行代码&quot;&gt;单行代码&lt;/h3&gt;
+&lt;p&gt;语法：代码之间分别用一个反引号包起来&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;`代码内容`
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;效果如下：
+&lt;code class=&quot;highlighter-rouge&quot;&gt;代码内容&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;代码块&quot;&gt;代码块&lt;/h3&gt;
+&lt;p&gt;语法：代码之间分别用三个反引号包起来，且两边的反引号单独占一行&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;(```)   // 注意：实际使用时没有括号，此处为演示防转义用
+  代码...
+  代码...
+  代码...
+(```)   // 注意：实际使用时没有括号，此处为演示防转义用
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;效果如下：&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  function print() {
+    echo &quot;还是那句hello world~&quot;;
+  }
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>Destiny</name></author><summary type="html">一、标题 在想要设置为标题的文字前面加#来表示 一个#是一级标题，二个#是二级标题，以此类推。支持六级标题。 注：标准语法一般在#后跟个空格再写文字，貌似简书不加空格也行。 示例： # 这是一级标题 ## 这是二级标题 ### 这是三级标题 #### 这是四级标题 ##### 这是五级标题 ###### 这是六级标题 效果如下： 这是一级标题 这是二级标题 这是三级标题 这是四级标题 这是五级标题 这是六级标题 二、字体 加粗 要加粗的文字左右分别用两个*号包起来 斜体 要倾斜的文字左右分别用一个*号包起来 斜体加粗 要倾斜和加粗的文字左右分别用三个*号包起来 删除线 要加删除线的文字左右分别用两个~~号包起来 示例： **这是加粗的文字** *这是倾斜的文字*` ***这是斜体加粗的文字*** ~~这是加删除线的文字~~ 效果如下： 这是加粗的文字 这是倾斜的文字` 这是斜体加粗的文字 这是加删除线的文字 三、引用 在引用的文字前加&amp;gt;即可。引用也可以嵌套，如加两个»、三个»&amp;gt;、n个… 示例： &amp;gt;这是引用的内容 &amp;gt;&amp;gt;这是引用的内容 &amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;这是引用的内容 效果如下： 这是引用的内容 这是引用的内容 这是引用的内容 四、分割线 三个或者三个以上的 - 或者 * 都可以。 示例： --- ---- *** ***** 效果如下：(可以看到，显示效果是一样的) 五、图片 语法： ![图片名](图片地址 &quot;图片title&quot;) 图片名是图片的命名，可加可不加。 图片title是图片的标题，当鼠标移到图片上时显示的内容。title可加可不加 示例： ![logo_alt](https://confluence.ingbaobei.com/images/logo/default-space-logo.svg &quot;confluenceLogo&quot;) 效果如下： 六、超链接 语法： [超链接名](超链接地址 &quot;超链接title&quot;) title可加可不加 示例： [百度](http://baidu.com) 效果如下： 百度 七、列表 无序列表 语法： 无序列表用 - + * 任何一种都可以 - 列表内容 + 列表内容 * 列表内容 注意：- + * 跟内容之间都要有一个空格 效果如下：(可以看到，显示效果是一样的) 列表内容 列表内容 列表内容 有序列表 语法：数字加点 1. 列表内容 2. 列表内容 3. 列表内容 注意：序号跟内容之间要有空格 效果如下： 列表内容 列表内容 列表内容 列表嵌套 语法：上一级和下一级之间敲四个空格即可（一般相当于一个tab） * 一级无序列表内容 1. 二级无序列表内容 2. 二级无序列表内容 1. 一级无序列表内容 * 二级无序列表内容 * 三级无序列表内容 2. 一级无序列表内容 1. 二级无序列表内容 1. 三级无序列表内容 效果如下： 一级无序列表内容 二级无序列表内容 二级无序列表内容 一级无序列表内容 * 二级无序列表内容 三级无序列表内容 一级无序列表内容 二级无序列表内容 三级无序列表内容 八、表格 语法： 表头 | 表头 | 表头 | 表头 ---- | ---- | ---- | ---- 内容 | 内容 | 内容 | 内容 内容 | 内容 | 内容 | 内容 其中， * 第二行分割表头和内容。&quot;-&quot;有一个就行，为了对齐，多加了几个 * 第二行分割可更改对齐方式。文字默认居左 * 文字居中 -&amp;gt; &quot;-&quot;两边加&quot;:&quot; * 文字居右 -&amp;gt; &quot;-&quot;右边加&quot;:&quot; 注意： 原生的语法两边都要用 | 包起来。此处省略 效果如下： 表头 表头 表头 表头 内容 内 内容 内 内容 内容 容 内容 九、代码 单行代码 语法：代码之间分别用一个反引号包起来 `代码内容` 效果如下： 代码内容 代码块 语法：代码之间分别用三个反引号包起来，且两边的反引号单独占一行 (```) // 注意：实际使用时没有括号，此处为演示防转义用 代码... 代码... 代码... (```) // 注意：实际使用时没有括号，此处为演示防转义用 效果如下： function print() { echo &quot;还是那句hello world~&quot;; }</summary></entry></feed>
